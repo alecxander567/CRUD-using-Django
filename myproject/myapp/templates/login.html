@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login</title>
+    {% load static %}
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+</head>
+<body style="background:linear-gradient(140deg,rgb(140, 3, 58), rgb(173, 6, 37),rgb(241, 3, 3));">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="{% url 'index' %}" style="color: white;">Crud</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'signup' %}" style="color: white;">Sign up</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact" style="color: white;">About</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="container d-grid vh-100" style="justify-content-center; align-items-center; padding: 50px;">
+        <h1 style="text-align: center; color: white; font-weight: 900;">Please Log in with your account</h1>
+        <div class="card p-4 text-white" style="background-color: #1c1c1e; width: 500px; border-radius: 10px; padding: 30px; height: auto; margin: auto; padding: 30px; gap: 20px;">
+            <h2 class="text-center" style="font-weight: 900;">Login</h2>
+
+            {% if form.errors %}
+                <div class="alert alert-danger text-center p-2">
+                    Invalid username or password.
+                </div>
+            {% endif %}
+
+            <form method="post">
+                {% csrf_token %}
+                
+               
+            <div class="mb-3">
+                <input type="text" name="username" id="id_username" class="form-control" placeholder="Enter your username" required>
+            </div>
+
+            <div class="mb-3">
+                <input type="password" name="password" id="id_password" class="form-control" placeholder="Enter your password" required>
+            </div>
+
+                <button type="submit" class="btn w-100 btn-primary" style="color: white; font-weight: 900;">
+                    Login
+                </button>
+                <p style="margin-top: 20px; text-align: center;">Don't have an account yet?</p>
+                <center><a href="{% url 'signup' %}" style="margin: auto; font-size: 20px;">Sign up</a></center>
+            </form>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS (Optional) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
